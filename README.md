@@ -1,1 +1,1 @@
-# Arduino-Control-Interface-for-Electro-Wetting
+# Arduino Control Interface for Electro-Wetting
