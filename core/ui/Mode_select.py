@@ -41,14 +41,29 @@ class Mode(QWidget,Arduino_Control):
         manual_tab = QWidget()
 
         # Init UI
+        S_Label = QLabel("Sorting Chip Test")
         self.into_detect_button = QPushButton("into detect")
         self.into_collection_button = QPushButton("into collection")
         self.into_waste_button = QPushButton("into waste")
 
+        Sorting_box = QVBoxLayout()
+        Sorting_box.addWidget(S_Label)
+        Sorting_box.addWidget(self.into_detect_button)
+        Sorting_box.addWidget(self.into_collection_button)
+        Sorting_box.addWidget(self.into_waste_button)
+
+        M_Label = QLabel("Mixing Chip Test")
+        self.Mixing_process_btn = QPushButton("Mixing")
+        self.Transport_process_btn = QPushButton("Transport")
+
+        Mixing_box =QVBoxLayout()
+        Mixing_box.addWidget(M_Label)
+        Mixing_box.addWidget(self.Mixing_process_btn)
+        Mixing_box.addWidget(self.Transport_process_btn)
+
         layout = QVBoxLayout()
-        layout.addWidget(self.into_detect_button)
-        layout.addWidget(self.into_collection_button)
-        layout.addWidget(self.into_waste_button)
+        layout.addLayout(Sorting_box)
+        layout.addLayout(Mixing_box)
         manual_tab.setLayout(layout)
 
         return manual_tab

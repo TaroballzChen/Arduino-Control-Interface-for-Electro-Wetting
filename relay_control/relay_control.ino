@@ -1,6 +1,6 @@
 String command = "";
 #define LEN 3
-const int output[] = {10,11,12};
+const int output[] = {8,11,12};
 const int output2[] = {7,8,9};
 int len = sizeof(output)/sizeof(output[0]);
 const int operate[LEN][LEN] = {
