@@ -21,6 +21,11 @@ class BodyWindow(QWidget):
             lambda: operate_mode_select.into_collection(serialport_select.ser_obj))
         operate_mode_select.into_waste_button.clicked.connect(
             lambda: operate_mode_select.into_waste(serialport_select.ser_obj))
+        
+
+
+
+
 
         # Camera_UI
         camera_ui = camera(self)
