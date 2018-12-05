@@ -10,49 +10,6 @@ int len = sizeof(output)/sizeof(output[0]);
 int *operate_array = NULL;
 int *p =NULL;
 
-int * Channel_1_step2(){
-  static int channel[] = {
-  1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,
-};
-  return channel;
-}
-
-int * Channel_1_step1(){
-  static int channel1[] = {
-  1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,
-  0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,
-};
-  return channel1;
-}
-
-int * Pause(){
-  static int p[]={
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    };
-    return p;
-  }
-
 void setup() {
   Serial.begin(9600);
   Serial.println("Ready");
@@ -85,32 +42,6 @@ void python_command() {
   }
 
 }
-
-void channel_select(String str){
-  switch (str[0]){
-    case 'a':
-      operate_array = Channel_1_step1();
-      pin_operate2(ELECTRODE);
-      operate_array = Channel_1_step2();
-      pin_operate2(ELECTRODE);
-      break;
-    
-    case 'b':
-      operate_array = NULL;
-      pin_operate2(0);
-      break;
-      
-    case '@':
-      operate_array = Pause();
-      pin_operate2(1);
-      break;
-    
-    default:
-      command="";
-    }
-    
-}
-
 
 void pin_operate2(int control_Num){
   for(int i=0;i<control_Num;i++){
