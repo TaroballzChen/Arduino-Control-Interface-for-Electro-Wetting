@@ -25,7 +25,7 @@ int * Channel_1_step2(){
   0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,
   0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,
 };
-return channel
+  return channel;
 }
 
 int * Channel_1_step1(){
@@ -91,7 +91,7 @@ void channel_select(String str){
     case 'a':
       operate_array = Channel_1_step1();
       pin_operate2(ELECTRODE);
-      operate_array = Channel_2_step2();
+      operate_array = Channel_1_step2();
       pin_operate2(ELECTRODE);
       break;
     
