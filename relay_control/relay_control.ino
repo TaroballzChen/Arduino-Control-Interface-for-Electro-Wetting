@@ -1,5 +1,5 @@
-#define CH595 16
-#define ELECTRODE 12
+#define CH595 48
+//#define ELECTRODE 12
 
 String command = "";
 const int latch = 2;
@@ -7,8 +7,8 @@ const int clock_pin = 3;
 const int data_pin = 4;
 const int output[] = {latch,clock_pin,data_pin};
 int len = sizeof(output)/sizeof(output[0]);
-int *operate_array = NULL;
-int *p =NULL;
+bool *operate_array = NULL;
+bool *p =NULL;
 
 void setup() {
   Serial.begin(9600);
@@ -55,7 +55,7 @@ void pin_operate2(int control_Num){
     }
 }
 
-void input_data(int High_or_Low){
+void input_data(bool High_or_Low){
   digitalWrite(clock_pin,LOW);
   digitalWrite(data_pin,High_or_Low);
   digitalWrite(clock_pin,HIGH);
