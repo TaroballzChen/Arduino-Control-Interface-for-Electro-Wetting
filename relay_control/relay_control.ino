@@ -1,5 +1,4 @@
 #define CH595 48
-//#define ELECTRODE 12
 
 String command = "";
 const int latch = 2;
@@ -27,6 +26,7 @@ void pinmode_init(const int pinList[]){
 void loop() {
   python_command();
   channel_select(command);
+  Serial.println(sizeof(*operate_array));
   command = '@';
 }
 
