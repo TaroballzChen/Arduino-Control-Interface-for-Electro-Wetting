@@ -50,7 +50,7 @@ void pin_operate(const byte control_array[][CH595],int len){
       input_data(data);
       }
       digitalWrite(latch,HIGH);
-      delay(15*1000);
+      delay(500);
     }
     
 }
