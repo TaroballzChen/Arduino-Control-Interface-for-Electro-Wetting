@@ -7,8 +7,6 @@ const int clock_pin = 3;
 const int data_pin = 4;
 const int output[] = {latch,clock_pin,data_pin};
 int len = arrayLength(output);
-bool *operate_array = NULL;
-bool *p =NULL;
 
 void setup() {
   Serial.begin(9600);
@@ -44,18 +42,6 @@ void python_command() {
 
 }
 
-void pin_operate2(int control_Num){
-  for(int i=0;i<control_Num;i++){
-    digitalWrite(latch,LOW);
-    for (int j=CH595;j>0;j--){
-        p = operate_array +i*CH595 +j-1;
-        input_data(*p);
-      }
-      digitalWrite(latch,HIGH);
-      delay(500);
-    }
-}
-
 void pin_operate(const byte control_array[][CH595],int len){
   for(int i=0;i<len;i++){
     digitalWrite(latch,LOW);
@@ -64,7 +50,7 @@ void pin_operate(const byte control_array[][CH595],int len){
       input_data(data);
       }
       digitalWrite(latch,HIGH);
-      delay(500);
+      delay(15*1000);
     }
     
 }

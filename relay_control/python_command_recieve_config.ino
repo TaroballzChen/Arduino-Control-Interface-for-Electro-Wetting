@@ -5,13 +5,10 @@ void channel_select(String str){
       break;
     
     case 'b':
-      operate_array = Channel_2_step2();
-      pin_operate2(1);
+      pin_operate(b,arrayLength(b));
       break;
 
     case 'c':
-      operate_array = Channel_2_step3();
-      pin_operate2(2);
       break;
           
     case '@':
