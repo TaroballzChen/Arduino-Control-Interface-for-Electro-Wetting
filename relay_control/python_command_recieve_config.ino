@@ -1,8 +1,7 @@
 void channel_select(String str){
   switch (str[0]){
     case 'a':
-      operate_array = Channel_2_step1();
-      pin_operate2(4);
+      pin_operate(a,arrayLength(a));
       break;
     
     case 'b':
@@ -14,10 +13,9 @@ void channel_select(String str){
       operate_array = Channel_2_step3();
       pin_operate2(2);
       break;
-    
+          
     case '@':
-      operate_array = Pause();
-      pin_operate2(1);
+      pin_operate(Pause,arrayLength(Pause));
       break;
     
     default:

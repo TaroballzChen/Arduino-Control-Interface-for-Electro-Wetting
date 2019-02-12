@@ -1,11 +1,12 @@
 #define CH595 48
+#define arrayLength(arr) (sizeof((arr))/sizeof((arr)[0]))
 
 String command = "";
 const int latch = 2;
 const int clock_pin = 3;
 const int data_pin = 4;
 const int output[] = {latch,clock_pin,data_pin};
-int len = sizeof(output)/sizeof(output[0]);
+int len = arrayLength(output);
 bool *operate_array = NULL;
 bool *p =NULL;
 
@@ -26,9 +27,9 @@ void pinmode_init(const int pinList[]){
 void loop() {
   python_command();
   channel_select(command);
-  Serial.println(sizeof(*operate_array));
   command = '@';
 }
+
 
 void python_command() {
   if (Serial.available()){
@@ -55,7 +56,20 @@ void pin_operate2(int control_Num){
     }
 }
 
-void input_data(bool High_or_Low){
+void pin_operate(const byte control_array[][CH595],int len){
+  for(int i=0;i<len;i++){
+    digitalWrite(latch,LOW);
+    for (int j=CH595-1;j>=0;j--){
+      byte data = pgm_read_word_near(control_array[i]+j);
+      input_data(data);
+      }
+      digitalWrite(latch,HIGH);
+      delay(500);
+    }
+    
+}
+
+void input_data(byte High_or_Low){
   digitalWrite(clock_pin,LOW);
   digitalWrite(data_pin,High_or_Low);
   digitalWrite(clock_pin,HIGH);
