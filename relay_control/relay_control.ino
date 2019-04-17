@@ -1,10 +1,12 @@
-#define CH595 48
+#include <avr/pgmspace.h>
+
+#define CH595 24
 #define arrayLength(arr) (sizeof((arr))/sizeof((arr)[0]))
 
 String command = "";
-const int latch = 2;
-const int clock_pin = 3;
-const int data_pin = 4;
+const int latch = 5;
+const int clock_pin = 6;
+const int data_pin = 7;
 const int output[] = {latch,clock_pin,data_pin};
 int len = arrayLength(output);
 
@@ -42,23 +44,35 @@ void python_command() {
 
 }
 
-void pin_operate(const byte control_array[][CH595],int len){
-  for(int i=0;i<len;i++){
-    digitalWrite(latch,LOW);
-    for (int j=CH595-1;j>=0;j--){
-      byte data = pgm_read_word_near(control_array[i]+j);
-      input_data(data);
-      }
-      digitalWrite(latch,HIGH);
-      delay(500);
+
+int calc_bit(char num,int i){
+    switch (num){
+    case 1:
+        return (1<<(i*2));
+    case -1:
+        return (1<<(i*2+1));
+    case 0:
+        return 0;
+    default:
+        return 0;  
     }
-    
 }
 
-void input_data(byte High_or_Low){
-  digitalWrite(clock_pin,LOW);
-  digitalWrite(data_pin,High_or_Low);
-  digitalWrite(clock_pin,HIGH);
+void pin_operate(const char control_array[],int array_length){
+  int line = array_length/CH595;
+  for(int i=0;i<line;i++){
+    digitalWrite(latch,LOW);
+    int z = CH595*(i+1);
+    for(int j=0;j<CH595/4;j++){
+        z -= 4;
+        int res = 0;
+        for (int k=0;k<4;k++){
+            char data = pgm_read_word_near(control_array + (z+k));
+            res += calc_bit(data,k);
+        }
+    shiftOut(data_pin,clock_pin,MSBFIRST,res);
+    }
+    digitalWrite(latch,HIGH);
+    delay(300);
   }
-
-
+}

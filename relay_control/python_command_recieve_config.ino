@@ -17,6 +17,7 @@ void channel_select(String str){
     
     default:
       command="";
+      break;
     }
     
 }
