@@ -1,6 +1,6 @@
 #include <avr/pgmspace.h>
 
-#define CH595 24
+#define CH595 48
 #define arrayLength(arr) (sizeof((arr))/sizeof((arr)[0]))
 
 String command = "";
@@ -73,6 +73,6 @@ void pin_operate(const char control_array[],int array_length){
     shiftOut(data_pin,clock_pin,MSBFIRST,res);
     }
     digitalWrite(latch,HIGH);
-    delay(300);
+    delay(1500);
   }
 }
