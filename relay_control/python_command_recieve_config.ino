@@ -23,7 +23,11 @@ void channel_select(String str){
     case 'm':
       pin_operate(m,arrayLength(m));
       break;
-      
+
+    case 'n':
+      pin_operate(n,arrayLength(n));
+      break;
+    
     case '@':
       pin_operate(Pause,arrayLength(Pause));
       break;

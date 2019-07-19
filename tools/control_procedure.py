@@ -1,5 +1,5 @@
 total_electrode = 48
-procedure = [[17,9,33,41],[10,18,42,34],[19,43],[44,47],[46,29],[45,28]]
+procedure = [[6,10,38,34],[33,36,8,5],[44,14],[11,41],[42,12],[43,13]]
 
 def modify_electrode_per_step(procedure,total_electrode_num):
     for i,step in enumerate(procedure):
